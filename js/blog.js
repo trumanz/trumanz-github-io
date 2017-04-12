@@ -15,27 +15,34 @@ function genereate_blogs(github_repo, div_content, ul_menu){
 	//div.append(fluid_div);
 	
 	var oauth = "client_id=c45417c5d6249959a91d&client_secret=3630a057d4ebbbdbfc84f855376f3f46f58b9710";
+	const oauth_obj = { client_id : 'c45417c5d6249959a91d', client_secret : '3630a057d4ebbbdbfc84f855376f3f46f58b9710'};
 	
-	//get all md file
-	makeCorsRequest("https://api.github.com/search/code?&q=filename:md+repo:" + github_repo + "&" + oauth, function(data){
-		md_files = JSON.parse(data);
-		//crate the sidebar
-		for(i in md_files["items"] )
+	
+	var md_file_search = oauth_obj;
+	md_file_search.q = 'filename:md repo:' + github_repo;
+	
+	//search all md file
+	new GitHub().search().forCode(md_file_search , function(error, md_files, request){
+		//console.log(error);
+		console.log(md_files);
+ 		//crate the sidebar
+		for(const item of  md_files )
 		{
-			var item =  md_files["items"][i];
-			console.log(item);
+			//console.log(item);
 			var name = item["name"];
 			name = name.substring(0, name.length - 3);
 			if(item["path"] != "README.md"){
 				href = item["url"];
 				ul_menu.append('<li><a href="' +  href + '">' + name + '</a></li>');
 			
-			makeCorsRequest("https://api.github.com/repos/" + github_repo + "/commits?" + "path=" + item["path"] + "&" + oauth, function(data, name){
-  				   commits = JSON.parse(data);
-				   console.log(commits);
-				   console.log(name);
+			var commits_search = oauth_obj;
+			commits_search.path = item["path"]
+			
+			new GitHub().getRepo("trumanz", "blog").listCommits(commits_search,function(error, commits, request){
+				   //console.log(commits);
+				   //console.log(name);
 				   var last_update_date = commits[0].commit.committer.date
-				   console.log(last_update_date);
+				   //console.log(last_update_date);
 				   var header = '<h2><a href="#">' + name + '</a></h2>';
 				   var post_time = '<p><span class="glyphicon glyphicon-time"></span> Posted on ' + last_update_date +  '</p>';
 				   div_content.append('<div class="blog_news"'+ 'last_update="'  + last_update_date +  '">' +  header  + post_time + '</div>');
@@ -45,8 +52,7 @@ function genereate_blogs(github_repo, div_content, ul_menu){
 						return y-x;
 					});
 					div_content.empty().append(orderedDivs);
-			}, name);
-			
+			}.bind({name :name}));	
 			}
 
 		}
