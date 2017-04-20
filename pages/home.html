@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>Truman's Space</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -94,7 +94,6 @@
                        
                         <li id="side-menu-blogs">
                             <a href="#"><i class="fa fa-sitemap fa-fw"></i> Blogs<span class="fa arrow"></span></a>
-                           
                          </li>
                         <li>
                             <a href="#"><i class="fa fa-files-o fa-fw"></i> Contacts<span class="fa arrow"></span></a>
@@ -159,7 +158,12 @@
     <!-- Morris Charts JavaScript -->
     <script src="../vendor/raphael/raphael.min.js"></script>
     <script src="../vendor/morrisjs/morris.min.js"></script>
-
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
+	  <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/sb-admin-2.js"></script>
   
 	<!--blog function-->
 	<script src="../vendor/github-api/GitHub.bundle.min.js"></script>
@@ -171,15 +175,11 @@
 	        new GitHubMarkDownBlog().listMdFiles(function(md_blogs){
 				$("#blog_news_panel").append(make_div(md_blogs));
 				$('#side-menu-blogs').append(make_siderbar_menu(md_blogs));
+				$("#side-menu").metisMenu();
 			});
 	   });
 	</script>
-	 <!-- Bootstrap Core JavaScript -->
-    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
-	  <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
+	
 	
 </body>
 
