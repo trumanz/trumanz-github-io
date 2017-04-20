@@ -83,6 +83,20 @@ class GitHubMarkDownBlog {
 	}
 }
 
+function show_blog(){
+	
+	console.log("clicked");
+	console.log(this.blog);
+	//TODO get and redner with github API
+	makeCorsRequest("https://raw.githubusercontent.com/trumanz/blog/master/" + this.blog.git_file.path, function(data){
+		console.log(data);
+		var converter = new showdown.Converter();
+		var x = converter.makeHtml(data);
+		$("#blog_news_panel").empty();
+		$("#blog_news_panel").append(x);
+		
+	})
+}
 
 function make_timeline_panel_div(blog){
 	
@@ -91,8 +105,9 @@ function make_timeline_panel_div(blog){
 	if(blog.commits.length != 1){
  		 time_info = blog.commits[0].commit.author.date + " updated";
 	 }
-	var body = "";
- 	var h4_titile = '<h4 class="timeline-title">' + title + '</h4>';
+	var body = "";  
+ 	var h4_titile = $('<a href="#"><h4 class="timeline-title">' + title + '</h4></a>');
+	 h4_titile.click(show_blog.bind({blog:blog}));
 	var p_text_muted = '<p><small class="text-muted"><i class="fa fa-clock-o"></i>' + time_info + '</small></p>';
 	
 	var div_heading = $('<div class="timeline-heading"/>')
@@ -161,7 +176,9 @@ function make_div(md_blogs){
 		 var list =  catalog[menu];
 		 var third_levels_ul = $('<ul class="nav nav-third-level"/>');
 		 for(x of list){
-			 third_levels_ul.append($('<li><a href="#">' + x.git_file.name + '</a></li>'));
+			 var blog_a = $('<a href="#">' + x.git_file.name + '</a>');
+			 blog_a.click(show_blog.bind({blog:x}));
+			 third_levels_ul.append($('<li></li>').append(blog_a));
 		 }
 		 second_level_li.append(third_levels_ul);
 		 second_levels_ul.append(second_level_li);
