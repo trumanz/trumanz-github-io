@@ -5,4 +5,4 @@ This site composed by html,javascript and css.
 
 
 ##TODO
-1. 
+1. show content when click blog
