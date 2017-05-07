@@ -92,7 +92,7 @@
                             <a href="home.html"><i class="fa fa-dashboard fa-fw"></i> Home</a>
                         </li>
                         <li>
-                            <a href="home.html"><i class="fa fa-bar-chart-o fa-fw"></i> About me</a>
+                            <a id="about-me" href="#"><i class="fa fa-bar-chart-o fa-fw"></i> About me</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-table fa-fw"></i> Projects<span class="fa arrow"></span></a>
@@ -137,7 +137,6 @@
             </div>
         </div>
         <!-- /#page-wrapper -->
-
     </div>
     <!-- /#wrapper -->
 
@@ -158,11 +157,18 @@
 	<script src="https://cdn.rawgit.com/showdownjs/showdown/1.6.4/dist/showdown.min.js"> </script>
 	<script src="../js/cors.js"></script>
     <script src="../js/blog.js"></script>
+    <script src="../js/resume.js"></script>
+
 
 	<script type="text/javascript">
-
-	   $(document).ready(function(){
-	        new GitHubMarkDownBlog().listMdFiles(function(md_blogs){
+     $(document).ready(function(){
+         //$("#side-menu").metisMenu();
+         $('#about-me').click(function(){
+             console.log("aobut me clicked");
+             $("#page-wrapper").empty();
+             $("#page-wrapper").append(make_resume_div());
+         });
+        new GitHubMarkDownBlog().listMdFiles(function(md_blogs){
 				  $("#blog_news_panel").append(make_div(md_blogs));
 				  $('#side-menu-blogs').append(make_siderbar_menu(md_blogs));
 				  $("#side-menu").metisMenu();
