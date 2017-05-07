@@ -60,7 +60,7 @@
 
             <div class="navbar-default sidebar" role="navigation">
 
-                <div class="sidebar-nav navbar-collapse">
+                <div class="sidebar-nav navbar-collapse" aria-expanded="true">
                     <ul class="nav" id="side-menu">
 					    <li>
 
@@ -166,7 +166,7 @@
           $('#blog_news_panel').empty();
 				  $("#blog_news_panel").append(blog_new_div);
 				  $('#side-menu-blogs').append(make_siderbar_menu(md_blogs));
-				  $("#side-menu").metisMenu({aria-expanded : 'true'});
+				  $("#side-menu").metisMenu();
 			});
 	   });
 	</script>
