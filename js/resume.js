@@ -6,8 +6,8 @@ var make_resume_header_div = function(resume_data){
                 .append('<img class="col-md-12 col-12" src="../images/Truman.Zhou.jpg" title="This is me!" alt="My Profile">');
   header.append(photo);
   var title_name = $('<div class="col-md-3 col-3"/>');
-  var name = $('<div class = "row"/>').append('<h2>Truman Zhou</h2>');
-  var title = $('<div class = "row"/>').append('<h3>Developer</h3>');
+  var name = $('<div class = "row"/>').append('<h2>'+ resume_data["name"]+'</h2>');
+  var title = $('<div class = "row"/>').append('<h3>' + resume_data["title"]+ '</h3>');
   title_name.append(name).append(title);
   header.append(title_name)
   var info = $('<div class="col-md-4 col-4"/>');
