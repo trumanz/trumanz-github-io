@@ -2,7 +2,7 @@
 var make_resume_header_div = function(resume_data){
   var header = $('<div class="row"/>');
 
-  var photo = $('<div class="col-md-2 col-2"/>')
+  var photo = $('<div class="col-md-3 col-3"/>')
                 .append('<img class="col-md-12 col-12" src="../images/Truman.Zhou.jpg" title="This is me!" alt="My Profile">');
   header.append(photo);
   var title_name = $('<div class="col-md-3 col-3"/>');
@@ -10,7 +10,7 @@ var make_resume_header_div = function(resume_data){
   var title = $('<div class = "row"/>').append('<h3>' + resume_data["title"]+ '</h3>');
   title_name.append(name).append(title);
   header.append(title_name)
-  var info = $('<div class="col-md-4 col-4"/>');
+  var info = $('<div class="col-md-6 col-6"/>');
   var ul = $('<ul><ul/>');
   var address = $('<li><i class ="fa fa-home"/></li>').append(" Shanghai, China");
   var email = $('<li><i class ="fa fa-envelope"/></li>').append('<a href="mailto:truman.ck.zhou@gmail.com"> truman.ck.zhou@gmail.com</a>');
