@@ -1,0 +1,19 @@
+{
+  "introduce" : "I am Truman, Working on this site",
+  "name" : "Truman Zhou",
+  "title" : "Software Developer",
+  "email" : "truman.ck.zhou@gmail.com",
+  "github" : "https//github.com/trumanz",
+  "skills" : [
+    "Programming language, C++, Java, Python, Shell ",
+    "Linux System, administration & programming",
+    "Network, Physical & Virtual Network Architecture, deployment & programming & troubleshooting,",
+    "Cloud system, vMware vSphere, Openstack, deployment & administration",
+    "DevOps, Jenkins, Gerrit, CFEngine, Foreman, ELK, Docker, Kubernetes",
+    "Database, Postgresql, Mysql"
+  ],
+  "Expeience" :[
+      "EMC",
+      "Ericsson"
+  ]
+}
