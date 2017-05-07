@@ -36,10 +36,14 @@ var make_resume_header_div = function(resume_data){
   var ul = $('<ul><ul/>');
   var address = $('<li><i class ="fa fa-home"/></li>').append("Shanghai, China");
   var email = $('<li><i class ="fa fa-envelope"/></li>').append("truman.ck.zhou@gmail.com");
+  var github = $('<li><i class ="fa fa-github-alt"/></li>').append("https://github.com/trumanz");
   var sites = $('<li/>');
   sites.append('<a href="#"> <i class="fa fa-github-alt">  </a>');
   sites.append('<a href="#"> <i class="fa fa-linkedin-square">  </a>');
-  ul.append(address).append(email).append(sites);
+  ul.append(address)
+    .append(email)
+    .append(github)
+    .append(sites);
   info.append(ul);
   header.append(info);
   return header;
