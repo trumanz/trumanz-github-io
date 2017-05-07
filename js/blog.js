@@ -92,8 +92,8 @@ function show_blog(){
 		console.log(data);
 		var converter = new showdown.Converter();
 		var x = converter.makeHtml(data);
-		$("#page-content-body").empty();
-		$("#page-content-body").append(x);
+		$("#blog_news_panel").empty();
+		$("#blog_news_panel").append(x);
 
 	})
 }
