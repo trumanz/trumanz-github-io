@@ -15,7 +15,7 @@ var make_resume_header_div = function(resume_data){
   var address = $('<li><i class ="fa fa-home"/></li>').append(" Shanghai, China");
   var email = $('<li><i class ="fa fa-envelope"/></li>').append('<a href="mailto:truman.ck.zhou@gmail.com"> truman.ck.zhou@gmail.com</a>');
   var github = $('<li><i class ="fa fa-github-alt"/></li>').append('<a href="https://github.com/trumanz"> https://github.com/trumanz</a>');
-  var travisci = $('<li><i class ="fa fa-rocket"/></li>').append('<a href="https://travis-ci.com/trumanz"> https://travis-ci.com/trumanz</a>');
+  var travisci = $('<li><i class ="fa fa-rocket"/></li>').append('<a href="https://travis-ci.org/trumanz"> https://travis-ci.org/trumanz</a>');
   var sites = $('<li/>');
   sites.append('<a href="#"> <i class="fa fa-github-alt">  </a>');
   sites.append('<a href="#"> <i class="fa fa-linkedin-square">  </a>');
