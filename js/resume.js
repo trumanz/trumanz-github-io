@@ -12,15 +12,17 @@ var make_resume_header_div = function(resume_data){
   header.append(title_name)
   var info = $('<div class="col-md-4 col-4"/>');
   var ul = $('<ul><ul/>');
-  var address = $('<li><i class ="fa fa-home"/></li>').append("Shanghai, China");
-  var email = $('<li><i class ="fa fa-envelope"/></li>').append("truman.ck.zhou@gmail.com");
-  var github = $('<li><i class ="fa fa-github-alt"/></li>').append("https://github.com/trumanz");
+  var address = $('<li><i class ="fa fa-home"/></li>').append(" Shanghai, China");
+  var email = $('<li><i class ="fa fa-envelope"/></li>').append('<a href="mailto:truman.ck.zhou@gmail.com"> truman.ck.zhou@gmail.com</a>'); 
+  var github = $('<li><i class ="fa fa-github-alt"/></li>').append('<a href="https://github.com/trumanz"> https://github.com/trumanz</a>');
+  var travisci = $('<li><i class ="fa fa-rocket"/></li>').append('<a href="https://travis-ci.com/trumanz"> https://travis-ci.com/trumanz</a>');
   var sites = $('<li/>');
   sites.append('<a href="#"> <i class="fa fa-github-alt">  </a>');
   sites.append('<a href="#"> <i class="fa fa-linkedin-square">  </a>');
   ul.append(address)
     .append(email)
     .append(github)
+    .append(travisci)
     .append(sites);
   info.append(ul);
   header.append(info);

@@ -90,7 +90,7 @@ function make_li(blog){
 }
 
 
-function make_blog_div(md_blogs){
+function make_div(md_blogs){
 	var all_li = '';
 	var blog_body =  $('<div/>').addClass("panel-body");
 	var ul = $('<ul class="timeline"/>');
