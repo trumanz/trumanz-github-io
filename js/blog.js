@@ -92,8 +92,8 @@ function show_blog(){
 		console.log(data);
 		var converter = new showdown.Converter();
 		var x = converter.makeHtml(data);
-		$("#blog_news_panel").empty();
-		$("#blog_news_panel").append(x);
+		$("#page-content-body").empty();
+		$("#page-content-body").append(x);
 
 	})
 }
@@ -146,7 +146,7 @@ function make_div(md_blogs){
 	var ul = $('<ul class="timeline"/>');
 	for(blog of md_blogs){
 		 ul.append(make_li(blog));
-	 }
+	}
 	 blog_body.append(ul);
    var blog_div = $('<div  class="panel panel-default"> </div>')
 	 var blog_heading = $('<div class="panel-heading"><i class="fa fa-clock-o fa-fw"></i> Blog News</div>');
