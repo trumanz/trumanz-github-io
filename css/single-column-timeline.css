@@ -125,3 +125,15 @@
 .timeline-body > p + p {
   margin-top: 5px;
 }
+
+
+@media (max-width: 767px) {
+  ul.timeline:before {
+    left: 40px;
+  }
+  ul.timeline > li > .timeline-panel {
+    width: calc(80%);
+    width: -moz-calc(80%);
+    width: -webkit-calc(80%);
+  }
+}
