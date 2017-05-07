@@ -13,7 +13,7 @@ var make_resume_header_div = function(resume_data){
   var info = $('<div class="col-md-4 col-4"/>');
   var ul = $('<ul><ul/>');
   var address = $('<li><i class ="fa fa-home"/></li>').append(" Shanghai, China");
-  var email = $('<li><i class ="fa fa-envelope"/></li>').append('<a href="mailto:truman.ck.zhou@gmail.com"> truman.ck.zhou@gmail.com</a>'); 
+  var email = $('<li><i class ="fa fa-envelope"/></li>').append('<a href="mailto:truman.ck.zhou@gmail.com"> truman.ck.zhou@gmail.com</a>');
   var github = $('<li><i class ="fa fa-github-alt"/></li>').append('<a href="https://github.com/trumanz"> https://github.com/trumanz</a>');
   var travisci = $('<li><i class ="fa fa-rocket"/></li>').append('<a href="https://travis-ci.com/trumanz"> https://travis-ci.com/trumanz</a>');
   var sites = $('<li/>');
@@ -65,3 +65,12 @@ var  make_resume_div = function(){
   }.bind({resume_div: resume_div}))
   return resume_div;
 }
+
+var load_basic_resume_to_div = function(div){
+   $.get("../data/me.json", function(resume_data, status){
+    console.log(resume_data);
+        var header = make_resume_header_div(resume_data);
+        this.resume_div.empty();
+       this.resume_div.append(header);
+  }.bind({resume_div: div}))
+ }
