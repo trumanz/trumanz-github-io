@@ -2,7 +2,7 @@
 
 
 class GitHubMarkDownBlog {
-	
+
 	constructor(){
 	    this.client_secure = { client_id : 'c45417c5d6249959a91d', client_secret : '3630a057d4ebbbdbfc84f855376f3f46f58b9710'};
 		this.repo = new GitHub().getRepo("trumanz", "blog");
@@ -10,7 +10,7 @@ class GitHubMarkDownBlog {
 			client_secure : { client_id : 'c45417c5d6249959a91d', client_secret : '3630a057d4ebbbdbfc84f855376f3f46f58b9710'},
 			repo : new GitHub().getRepo("trumanz", "blog"),
 		};
-		
+
 	}
 	search_code_callback(complete_callback){
 			return function(error, md_files, request){
@@ -19,7 +19,7 @@ class GitHubMarkDownBlog {
 				for(let md of md_files){
 					console.log(md["path"]);
 					var commits_search =  { client_id : 'c45417c5d6249959a91d', client_secret : '3630a057d4ebbbdbfc84f855376f3f46f58b9710'};
-				    commits_search.path = md["path"];	  
+				    commits_search.path = md["path"];
                     new GitHub().getRepo("trumanz", "blog").listCommits(commits_search,function(error, commits, request){
 						//console.log(commits);
 						this.rc.count = this.rc.count - 1;
@@ -28,20 +28,20 @@ class GitHubMarkDownBlog {
 							this.complete_callback(rc);
 						}
 						//console.log(this.count.value);
-					}.bind({rc: rc, complete_callback: this.complete_callback, path:  md["path"] }));						
+					}.bind({rc: rc, complete_callback: this.complete_callback, path:  md["path"] }));
 				}
 			}.bind({complete_callback: complete_callback, x : this.x});
 	};
-	
+
 	listMdFiles(complete_callback){
 		console.log(this);
   		var md_file_search = (JSON.parse(JSON.stringify(this.client_secure)));
-		md_file_search.q = 'filename:md repo:' + "trumanz/blog"; 
+		md_file_search.q = 'filename:md repo:' + "trumanz/blog";
         new GitHub().search().forCode(md_file_search ,function(error, md_files, request){
 			console.log(md_files.length);
 			var search_commits = function(deferred){
 				    var commits_search =  { client_id : 'c45417c5d6249959a91d', client_secret : '3630a057d4ebbbdbfc84f855376f3f46f58b9710'};
-				    commits_search.path = this.git_file["path"];	  
+				    commits_search.path = this.git_file["path"];
                     new GitHub().getRepo("trumanz", "blog").listCommits(commits_search,function(error, commits, request){
 						var x = { commits : commits, git_file : this.git_file }
 					    console.log(x);
@@ -58,23 +58,23 @@ class GitHubMarkDownBlog {
 			var ordered_rc = [].slice.call(arguments).sort(function(a, b) {
 				     var x = new Date(a.commits[0].commit.committer.date);
 					 var y = new Date(b.commits[0].commit.committer.date);
-					 return y - x; 
+					 return y - x;
 			});
 			complete_callback(ordered_rc);
 		})
-			
-		});				
-	} 
-		
+
+		});
+	}
+
 	listCommitsPromise(path){
 		var x ={
 			repo: this.repo,
 			path: path,
 			client_secure: this.client_secure
 		};
-		return new Promise(function(resolve, reject){			
+		return new Promise(function(resolve, reject){
 				  var commits_search = JSON.parse(JSON.stringify(this.client_secure));
-				  commits_search.path = this.path;	  
+				  commits_search.path = this.path;
 				  this.repo.listCommits(commits_search,function(error, commits, request){
 					  if(error) return reject(error);
 					  resolve(commits);
@@ -84,7 +84,7 @@ class GitHubMarkDownBlog {
 }
 
 function show_blog(){
-	
+
 	console.log("clicked");
 	console.log(this.blog);
 	//TODO get and redner with github API
@@ -94,33 +94,33 @@ function show_blog(){
 		var x = converter.makeHtml(data);
 		$("#blog_news_panel").empty();
 		$("#blog_news_panel").append(x);
-		
+
 	})
 }
 
 function make_timeline_panel_div(blog){
-	
+
 	var title = blog.git_file.name.substring(0, blog.git_file.name.length - 3);
 	var time_info = blog.commits[0].commit.author.date + " posted";
 	if(blog.commits.length != 1){
  		 time_info = blog.commits[0].commit.author.date + " updated";
 	 }
-	var body = "";  
+	var body = "";
  	var h4_titile = $('<a href="#"><h4 class="timeline-title">' + title + '</h4></a>');
 	 h4_titile.click(show_blog.bind({blog:blog}));
 	var p_text_muted = '<p><small class="text-muted"><i class="fa fa-clock-o"></i>' + time_info + '</small></p>';
-	
+
 	var div_heading = $('<div class="timeline-heading"/>')
 	                      .append(h4_titile)
 						  .append(p_text_muted);
-	
+
 	var div_body =  $('<div class="timeline-body"/>')
 	                     .append('<p>' + body + '</p>');
 	var div =  $('<div/>').addClass("timeline-panel")
 	              .append(div_heading)
 				  .append(div_body);
 	return div;
-	
+
 }
 
 function make_li(blog){
@@ -142,15 +142,20 @@ function make_li(blog){
 
 function make_div(md_blogs){
 	var all_li = '';
-	var div =  $('<div/>').addClass("panel-body");
-	var ul = $('<ul/>').addClass("timeline");
-	div.append(ul);
+	var blog_body =  $('<div/>').addClass("panel-body");
+	var ul = $('<ul class="timeline"/>');
 	for(blog of md_blogs){
-		 ul.append(make_li(blog));   	 
+		 ul.append(make_li(blog));
 	 }
- 	 return div;
+	 blog_body.append(ul);
+   var blog_div = $('<div  class="panel panel-default"> </div>')
+	 var blog_heading = $('<div class="panel-heading"><i class="fa fa-clock-o fa-fw"></i> Blog News</div>');
+	 blog_div.append(blog_heading);
+	 blog_div.append(blog_body);
+
+ 	 return blog_div;
 }
- 
+
  function make_siderbar_menu(md_blogs){
 
      var catalog = {};
@@ -166,7 +171,7 @@ function make_div(md_blogs){
 		 if(!(x[0] in catalog)) {
 			 catalog[x[0]] = [];
 		 }
-		 catalog[x[0]].push(blog);  
+		 catalog[x[0]].push(blog);
 	 }
 	 console.log(catalog);
 	 var second_levels_ul = $(' <ul class="nav nav-second-level"/>');
@@ -184,10 +189,8 @@ function make_div(md_blogs){
 		 second_levels_ul.append(second_level_li);
 	 }
 
-	 
+
 	 return second_levels_ul;
-	 
-	 
+
+
  }
-
-
