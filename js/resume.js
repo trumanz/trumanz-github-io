@@ -1,25 +1,3 @@
-var  get_resume_data = function(){
-  var x = `{
-    "introduce" : "I am Truman, Working on this site",
-    "name" : "Truman Zhou",
-    "title" : "Software Developer",
-    "email" : "truman.ck.zhou@gmail.com",
-    "github" : "https//github.com/trumanz",
-    "skills" : [
-      "Programming language, C++, Java, Python, Shell ",
-      "Linux System, administration & programming",
-      "Network, Physical & Virtual Network Architecture, deployment & programming & troubleshooting,",
-      "Cloud system, vMware vSphere, Openstack, deployment & administration",
-      "DevOps, Jenkins, Gerrit, CFEngine, Foreman, ELK, Docker, Kubernetes",
-      "Database, Postgresql, Mysql"
-    ],
-    "Expeience" :[
-        "EMC",
-        "Ericsson"
-    ]
-  }`;
-  return JSON.parse(x);
-}
 
 var make_resume_header_div = function(resume_data){
   var header = $('<div class="row"/>');
@@ -63,22 +41,25 @@ var make_resume_body = function(title, body_div){
 
 var make_skills_div = function(resume_data){
      var div = $('<div class="row"/>');
-     for( skill of resume_data["skills"]) {
+     for( i in resume_data["skills"]) {
+         var skill = resume_data["skills"][i];
          var sk_div = $('<div/>').append("<h4>" + skill + "</h4>");
          div.append(sk_div);
      }
      return div;
 }
 
+
 var  make_resume_div = function(){
   var resume_div = $('<div class="container"/>');
-  var resume_data = get_resume_data();
-  console.log(resume_data);
-  var header = make_resume_header_div(resume_data);
-  resume_div.append(header);
-  var introduce = make_resume_body("Hello!",make_introduce_div(resume_data) );
-  resume_div.append(introduce);
-  var skills = make_resume_body("Skills",make_skills_div(resume_data) );
-  resume_div.append(skills);
+  $.get("../data/me.json", function(resume_data, status){
+    console.log(resume_data);
+        var header = make_resume_header_div(resume_data);
+       this.resume_div.append(header);
+       var introduce = make_resume_body("Hello!",make_introduce_div(resume_data) );
+       this.resume_div.append(introduce);
+       var skills = make_resume_body("Skills",make_skills_div(resume_data) );
+       this.resume_div.append(skills);
+  }.bind({resume_div: resume_div}))
   return resume_div;
 }

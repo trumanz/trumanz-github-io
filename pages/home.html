@@ -139,7 +139,8 @@
         <!-- /#page-wrapper -->
     </div>
     <!-- /#wrapper -->
-
+    <!-- support  Promise on IE-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script>
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
     <!-- Morris Charts JavaScript -->
@@ -168,7 +169,7 @@
              $("#page-wrapper").empty();
              $("#page-wrapper").append(make_resume_div());
          });
-        new GitHubMarkDownBlog().listMdFiles(function(md_blogs){
+        listMdFiles(function(md_blogs){
 				  $("#blog_news_panel").append(make_div(md_blogs));
 				  $('#side-menu-blogs').append(make_siderbar_menu(md_blogs));
 				  $("#side-menu").metisMenu();
